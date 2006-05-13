@@ -1,0 +1,8 @@
+- add support for CPSMailBoxer
+- add support for CPSSubscriptions
+- refactor hierarchy import/export (make it closer to document import/export
+  to enhance performances and support extended schemas)
+- use a combination of SAX + elementtree to parse 'documents' as it might get
+  big
+- add support for custom skin settings
+

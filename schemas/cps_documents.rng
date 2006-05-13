@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2004 Nuxeo SARL (http://nuxeo.com)
+Author: Emmanuel Pietriga (ep@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for CPS 3 documents exported by CPSIO.CPS3Exporter
+                                           imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpsdocuments#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:cdc="http://www.nuxeo.com/2004/06/cpsdocument#"
+         xmlns:csh="http://www.nuxeo.com/2004/06/cpsschemas#"
+         xmlns:clt="http://www.nuxeo.com/2004/06/cpslayouts#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<include href="cps_schemas.rng"/>
+<include href="cps_layouts.rng"/>
+
+<start combine="choice">
+  <ref name="root"/>
+</start>
+
+<define name="root" combine="choice">
+  <element name="cdc:documents">
+    <zeroOrMore>
+      <ref name="document"/>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="document">
+  <element name="cdc:document">
+    <attribute name="id"/>
+    <attribute name="portalType"/>
+    <interleave>
+      <optional><ref name="flexibleSchemas"/></optional>
+      <optional><ref name="flexibleLayouts"/></optional>
+      <ref name="dataModel"/>
+      <ref name="history"/>
+      <zeroOrMore>
+        <ref name="proxy"/>
+      </zeroOrMore>
+    </interleave>
+  </element>
+</define>
+
+<define name="flexibleSchemas">
+  <element name="cdc:flexibleSchemas">
+    <ref name="schema"/>
+  </element>
+</define>
+
+<define name="flexibleLayouts">
+  <element name="cdc:flexibleLayouts">
+    <ref name="layout"/>
+  </element>
+</define>
+
+<define name="dataModel">
+  <element name="cdc:dataModel">
+    <zeroOrMore>
+      <element name="cdc:field">
+        <attribute name="id"/>
+        <attribute name="type"/>
+        <optional><attribute name="contentType"/></optional>
+        <optional><attribute name="file_name"/></optional>
+        <optional><attribute name="ref"/></optional>
+        <optional><attribute name="title"/></optional>
+        <text/>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="history">
+  <element name="cdc:history">
+    <zeroOrMore>
+      <element name="cdc:workflowEvent">
+        <attribute name="workflow_id"/>
+        <attribute name="rpath"/>
+        <optional><attribute name="action"/></optional>
+        <optional><attribute name="actor"/></optional>
+        <optional><attribute name="dest_container"/></optional>
+        <optional><attribute name="review_state"/></optional>
+        <optional><attribute name="state"/></optional>
+        <optional><attribute name="time"/></optional>
+        <optional><attribute name="time_str"/></optional>
+        <zeroOrMore>
+          <element>
+            <nsName ns="http://www.nuxeo.com/2004/06/cpsdocument#"/>
+            <zeroOrMore><attribute><anyName/></attribute></zeroOrMore>
+            <text/>
+          </element>
+        </zeroOrMore>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="proxy">
+  <element name="cdc:proxy">
+    <attribute name="docId"/>
+    <attribute name="rpath"/>
+    <attribute name="defaultLang"/>
+    <optional><attribute name="commentForum"/></optional>
+    <optional>
+      <element name="cdc:languageRevisions">
+        <zeroOrMore>
+          <ref name="lang_rev_attr"/>
+        </zeroOrMore>
+        <empty/>
+      </element>
+    </optional>
+    <optional>
+      <element name="cdc:fromLanguageRevisions">
+        <zeroOrMore>
+          <ref name="lang_rev_attr"/>
+        </zeroOrMore>
+        <empty/>
+      </element>
+    </optional>
+    <optional>
+      <element name="cdc:permissions">
+        <zeroOrMore>
+          <ref name="permission"/>
+        </zeroOrMore>
+      </element>
+    </optional>
+  </element>
+</define>
+
+<define name="lang_rev_attr">
+  <attribute><anyName/><data type="int"/></attribute>
+</define>
+
+<define name="permission">
+  <element name="cdc:permission">
+    <attribute name="acquired"><data type="boolean"/></attribute>
+    <attribute name="name"/>
+    <attribute name="roles"/>
+  </element>
+</define>
+
+</grammar>

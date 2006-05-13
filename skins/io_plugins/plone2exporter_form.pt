@@ -1,0 +1,109 @@
+<html metal:use-macro="here/main_template/macros/master">
+
+<!-- Plone 2 Export module options template -->
+
+<metal:block fill-slot="header" />
+
+<metal:block fill-slot="main"
+             tal:define="io_class options/io_class;
+                         error_msg options/error_msg|nothing">
+
+  <h1 i18n:translate="cpsio_title_export">Export</h1>
+
+  <form method="post" action="." enctype="multipart/form-data">
+    <div style="margin:0.5em">
+      <label for="export_dir_name" i18n:translate="cpsio_label_dirname">
+        Directory name
+      </label>
+      <input type="text" name="export_file_name" id="export_file_name" />
+      <strong tal:condition="python:error_msg == 'err_file'"
+              i18n:translate="cpsio_err_missing_dirname">You must specify a dirname.</strong>
+    </div>
+
+
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_hierarchy" id="export_hierarchy"
+             checked="checked" class="noborder" />
+      <label for="export_hierarchy"
+             i18n:translate="cpsio_label_export_hierarchy">Export hierarchy</label>
+      <div style="font-style:italic;margin:0.5em 0.5em"
+           i18n:translate="cpsio_label_export_hierarchy_required"></div>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="radio" name="export_hierarchy_method"
+             id="export_hierarchy_wssc" class="noborder" />
+      <label for="export_hierarchy_wssc"
+             i18n:translate="cpsio_label_plone_export_wssc">as workspaces and sections</label>
+      <input type="radio" name="export_hierarchy_method"
+             id="export_hierarchy_ws" class="noborder" />
+      <label for="export_hierarchy_ws"
+             i18n:translate="cpsio_label_plone_export_ws">as workspaces only</label>
+      <input type="radio" name="export_hierarchy_method"
+             id="export_hierarchy_sc" class="noborder" />
+      <label for="export_hierarchy_sc"
+             i18n:translate="cpsio_label_plone_export_sc">as sections only</label>
+      <input type="radio" name="export_hierarchy_method"
+             id="export_hierarchy_fd" class="noborder" />
+      <label for="export_hierarchy_fd"
+             i18n:translate="cpsio_label_plone_export_fd">as CMF folders</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_hierarchy" id="export_hierarchy"
+             checked="checked" class="noborder" />
+      <label for="export_hierarchy"
+             i18n:translate="cpsio_label_export_hierarchy">Export hierarchy</label>
+      <div style="font-style:italic;margin:0.5em 0.5em"
+           i18n:translate="cpsio_label_export_hierarchy_required"></div>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="radio" name="export_hierarchy_method"
+             id="export_hierarchy_wssc" class="noborder"
+             value="export_hierarchy_wssc" checked="checked"/>
+      <label for="export_hierarchy_wssc"
+             i18n:translate="cpsio_label_plone_export_wssc">as workspaces and sections</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="radio" name="export_hierarchy_method"
+             id="export_hierarchy_ws" class="noborder"
+             value="export_hierarchy_ws" />
+      <label for="export_hierarchy_ws"
+             i18n:translate="cpsio_label_plone_export_ws">as workspaces only</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="radio" name="export_hierarchy_method"
+             id="export_hierarchy_sc" class="noborder"
+             value="export_hierarchy_sc"/>
+      <label for="export_hierarchy_sc"
+             i18n:translate="cpsio_label_plone_export_sc">as sections only</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_workflows" id="export_workflows"
+             checked="checked" class="noborder" />
+      <label for="export_workflows"
+             i18n:translate="cpsio_label_export_workflows">Export workflows</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_portal_types" id="export_portal_types"
+             checked="checked" class="noborder" />
+      <label for="export_portal_types"
+             i18n:translate="cpsio_label_export_portal_types">Export portal types</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_portal_types" id="export_hierarchy"
+             checked="checked" class="noborder" />
+      <label for="export_portal_types"
+             i18n:translate="cpsio_label_export_portal_types">Export portal types</label>
+    </div>
+    <div style="margin:2em 0.5em 0.5em 0.5em">
+      <input type="hidden" name="export_class" tal:attributes="value io_class" />
+      <input type="hidden" name="export_template"
+             tal:attributes="value template/id" />
+      <input type="submit" name="plone2exporter:method"
+             class="standalone" value="cpsio_button_export"
+             i18n:attributes="value" />
+    </div>
+  </form>
+
+</metal:block>
+
+</html>

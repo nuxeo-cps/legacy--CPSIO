@@ -1,0 +1,337 @@
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+msgid ""
+msgstr ""
+"Project-Id-Version: CPSIO Italian Translation\n"
+"POT-Creation-Date: 2006-01-03 14:50default\n"
+"PO-Revision-Date: 2005-11-10 09:09+0100\n"
+"Last-Translator: Stefano Schintu <schintu@gmail.com>\n"
+"Language-Team: CPS Italian <schintu@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-15\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Preferred-encodings: utf-8 latin1\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"Language-Code: it\n"
+"Language-Name: Italian\n"
+"Domain: default\n"
+
+#.   <label content="option_label" attributes="for option_id" condition="python:option_label and getattr(here, 'Localizer', None)" for="option_id">
+#.             Option name
+#.           </label>
+#: from ../skins/io_plugins/default_exporter_form.pt
+#: ../skins/io_plugins/default_importer_form.pt
+msgid "Option name"
+msgstr "Nome opzione"
+
+#.   <input name="cps3exporter:method" type="submit" class="standalone" value="cpsio_button_export" />
+#.   <input name="cpsskinsexporter:method" type="submit" class="standalone" value="cpsio_button_export" />
+#.   <input name="default_exporter:method" type="submit" class="standalone" value="cpsio_button_export" />
+#.   <input name="plone2exporter:method" type="submit" class="standalone" value="cpsio_button_export" />
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/cpsskinsexporter_form.pt
+#: ../skins/io_plugins/default_exporter_form.pt
+#: ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_button_export"
+msgstr "Esporta"
+
+#.   <input name="cps3importer:method" type="submit" class="standalone" value="cpsio_button_import" />
+#.   <input name="cpsskinsimporter:method" type="submit" class="standalone" value="cpsio_button_import" />
+#.   <input name="default_importer:method" type="submit" class="standalone" value="cpsio_button_import" />
+#: from ../skins/io_plugins/cps3importer_form.pt
+#: ../skins/io_plugins/cpsskinsimporter_form.pt
+#: ../skins/io_plugins/default_importer_form.pt
+msgid "cpsio_button_import"
+msgstr "Importa"
+
+#.   <strong condition="python:error_msg == 'err_file'">You must specify a dirname.</strong>
+#: from ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_err_missing_dirname"
+msgstr "Inserisci il nome di una cartella"
+
+#.   <strong condition="python:error_msg == 'err_file'">You must specify a dirname.</strong>
+#.   <strong condition="python:error_msg == 'err_file'">You must specify a filename.</strong>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/cps3importer_form.pt
+#: ../skins/io_plugins/cpsskinsexporter_form.pt
+#: ../skins/io_plugins/cpsskinsimporter_form.pt
+#: ../skins/io_plugins/default_exporter_form.pt
+#: ../skins/io_plugins/default_importer_form.pt
+msgid "cpsio_err_missing_filename"
+msgstr "Inserisci il nome di un file"
+
+#.   <label for="import_overwrite">
+#.           Overwrite existing theme in case of conflict</label>
+#: from ../skins/io_plugins/cpsskinsimporter_form.pt
+msgid "cpsio_label_cpsskins_overwrite"
+msgstr "Sovrascrivi i temi esistenti in caso di conflitto"
+
+#.   <label for="export_file_name">
+#.           File name
+#.         </label>
+#.   <label for="export_dir_name">
+#.           Directory name
+#.         </label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/cpsskinsexporter_form.pt
+#: ../skins/io_plugins/default_exporter_form.pt
+#: ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_dirname"
+msgstr "Nome della cartella"
+
+#.   <label for="export_custom_skins">Export custom skins</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_export_custom_skins"
+msgstr "Esporta le skin personalizzate"
+
+#.   <label for="export_documents">Export documents</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_export_documents"
+msgstr "Esporta gli oggetti"
+
+#.   <label for="export_hierarchy">Export hierarchy</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_export_hierarchy"
+msgstr "Esporta la struttura del portale (ambienti di lavoro, sezioni, ...)"
+
+#.   <div style="font-style:italic;margin:0.5em 0.5em" />
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_export_hierarchy_required"
+msgstr ""
+"Questa opzione sarà selezionata automaticamente se decidi di esportare i "
+"tuoi oggetti."
+
+#.   <label for="export_layouts">Export layouts</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_export_layouts"
+msgstr "Esporta le definizioni dei layout"
+
+#.   <label for="export_filename">
+#.           Export module:
+#.         </label>
+#: from ../skins/io_templates/cpsio_exporter_chooser.pt
+msgid "cpsio_label_export_module"
+msgstr "Modulo di esportazione"
+
+#.   <label for="export_portal_types">Export portal types</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_export_portal_types"
+msgstr "Esporta i tipi di oggetto"
+
+#.   <label for="export_schemas">Export schemas</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_export_schemas"
+msgstr "Esporta le definizioni degli schemi"
+
+#.   <label for="export_theme_settings">Export theme settings</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_export_theme_settings"
+msgstr "Esporta la configurazione dei temi"
+
+#.   <label for="export_vocabularies">Export vocabularies</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_export_vocabularies"
+msgstr "Esporta i dizionari"
+
+#.   <label for="export_workflows">Export workflows</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_export_workflows"
+msgstr "Esporta le definizioni dei flussi di lavoro"
+
+#.   <label for="import_file_name">
+#.           Filename:
+#.         </label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+#: ../skins/io_plugins/cpsskinsimporter_form.pt
+#: ../skins/io_plugins/default_importer_form.pt
+msgid "cpsio_label_filename"
+msgstr "Nome del file"
+
+#.   <label for="import_custom_skins">Import custom skins</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_custom_skins"
+msgstr "Importa le skin personalizzate"
+
+#.   <label for="import_documents">Import documents</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_documents"
+msgstr "Importa gli oggetti"
+
+#.   <label for="import_groups">Import groups</label>
+#.   <div style="font-style:italic;margin:0.5em 0.5em" />
+#: from ../skins/io_plugins/cps3importer_form.pt
+#, fuzzy
+msgid "cpsio_label_import_groups"
+msgstr "Importer les définitions de layouts"
+
+#.   <label for="import_hierarchy">Import hierarchy</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_hierarchy"
+msgstr "Importa la struttura del portale (ambienti di lavoro, sezioni, ...)"
+
+#.   <div style="font-style:italic;margin:0.5em 0.5em" />
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_hierarchy_required"
+msgstr ""
+"L'importazione della gerarchia del portale è un prerequisito per "
+"l'importazione degli oggetti e sarà eseguita automaticamente se "
+"l'importazione dell'oggetto viene selezionata."
+
+#.   <label for="import_layouts">Import layouts</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_layouts"
+msgstr "Importa le definizioni dei layouts"
+
+#.   <label for="import_members">Import members</label>
+#.   <div style="font-style:italic;margin:0.5em 0.5em" />
+#: from ../skins/io_plugins/cps3importer_form.pt
+#, fuzzy
+msgid "cpsio_label_import_members"
+msgstr "Importer les définitions de schemas"
+
+#.   <label for="import_filename">
+#.           Import module:
+#.         </label>
+#: from ../skins/io_templates/cpsio_importer_chooser.pt
+msgid "cpsio_label_import_module"
+msgstr "Modulo di importazione"
+
+#.   <label for="import_portal_types">Import portal types</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_portal_types"
+msgstr "Importa i tipi di oggetto"
+
+#.   <label for="import_schemas">Import schemas</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_schemas"
+msgstr "Importa le definizioni degli schemi"
+
+#.   <label for="import_theme_settings">Import theme settings</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_theme_settings"
+msgstr "Importa la configurazione dei temi"
+
+#.   <label for="import_vocabularies">Import vocabularies</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_vocabularies"
+msgstr "Importa i dizionari"
+
+#.   <label for="import_workflows">Import workflows</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_import_workflows"
+msgstr "Importa le definizioni dei flussi di lavoro"
+
+#.   <label for="import_custom_skins_overwrite">
+#.           Overwrite existing items in case of conflict</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_overwrite_custom_skins"
+msgstr "Sovrascrivi gli oggetti esistenti in caso di conflitto"
+
+#.   <label for="import_documents_overwrite">
+#.           Overwrite existing documents in case of conflict</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_overwrite_documents"
+msgstr "In caso di conflitto, cancella gli oggetti più datati"
+
+#.   <label for="export_hierarchy_fd">as CMF folders</label>
+#: from ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_plone_export_fd"
+msgstr "come cartella CMF"
+
+#.   <label for="export_hierarchy_sc">as sections only</label>
+#: from ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_plone_export_sc"
+msgstr "solo come sezioni"
+
+#.   <label for="export_hierarchy_ws">as workspaces only</label>
+#: from ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_plone_export_ws"
+msgstr "solo come aree di lavoro "
+
+#.   <label for="export_hierarchy_wssc">as workspaces and sections</label>
+#: from ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_label_plone_export_wssc"
+msgstr "come aree di lavoro e sezioni"
+
+#.   <label for="import_hierarchy_restore_boxes">Restore box configuration</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_restore_boxes"
+msgstr "Ripristina i contenitori"
+
+#.   <label for="import_hierarchy_restore_local_roles">Restore local roles</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_restore_local_roles"
+msgstr "Ripristina i ruoli locali"
+
+#.   <label for="import_hierarchy_restore_local_themes">Restore local themes</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_restore_local_themes"
+msgstr "Ripristina i temi locali"
+
+#.   <label for="import_hierarchy_restore_portlets">Restore portlets</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_restore_portlets"
+msgstr "Ripristina i portlet"
+
+#.   <label for="import_layouts_widget_types">Import widget types</label>
+#: from ../skins/io_plugins/cps3importer_form.pt
+msgid "cpsio_label_restore_widgets"
+msgstr "Ripristina i tipi di componenti (widget)"
+
+#.   <label for="export_hierarchy_save_boxes">Save box configuration</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_save_boxes"
+msgstr "Salva i contenitori"
+
+#.   <label for="export_hierarchy_save_local_roles">Save local roles</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_save_local_roles"
+msgstr "Salva i ruoli locali"
+
+#.   <label for="export_hierarchy_save_local_themes">Save local themes</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_save_local_themes"
+msgstr "Salva i temi locali"
+
+#.   <label for="export_hierarchy_save_portlets">Save portlets</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_save_portlets"
+msgstr "Salva i portlet"
+
+#.   <label for="export_layouts_widget_types">Export widget types</label>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+msgid "cpsio_label_save_widgets"
+msgstr "Salva i tipi di componenti (widget)"
+
+#.   <span condition="python:errormsg == 'error_module'">You must specify a module.</span>
+#: from ../skins/io_templates/cpsio_exporter_chooser.pt
+#: ../skins/io_templates/cpsio_importer_chooser.pt
+msgid "cpsio_psm_missing_module"
+msgstr "Scegli un modulo"
+
+#.   <h1>Export</h1>
+#: from ../skins/io_plugins/cps3exporter_form.pt
+#: ../skins/io_plugins/default_exporter_form.pt
+#: ../skins/io_plugins/plone2exporter_form.pt
+msgid "cpsio_title_export"
+msgstr "Esporta"
+
+msgid "cpsio_psm_import_successful"
+msgstr "Importazione riuscita."
+
+msgid "cpsio_psm_export_successful"
+msgstr "Esportazione riuscita."
+
+msgid "action_xml_import"
+msgstr "Importa XML"
+
+msgid "action_xml_export"
+msgstr "Esporta XML"
+
+msgid "_blank"
+msgstr "-- Vuoto --"

@@ -1,0 +1,132 @@
+<html metal:use-macro="here/main_template/macros/master">
+
+<!-- CPS 3 Export module options template -->
+
+<metal:block fill-slot="header" />
+
+<metal:block fill-slot="main"
+             tal:define="io_class options/io_class;
+                         error_msg options/error_msg|nothing">
+
+  <h1 i18n:translate="cpsio_title_export">Export</h1>
+
+  <form method="post" action="." enctype="multipart/form-data">
+    <div style="margin:0.5em">
+      <label for="export_file_name" i18n:translate="cpsio_label_dirname">
+        File name
+      </label>
+      <input type="text" name="export_file_name" id="export_file_name" />
+      <strong tal:condition="python:error_msg == 'err_file'"
+              i18n:translate="cpsio_err_missing_filename">You must specify a dirname.</strong>
+        <em>For example: export.zip</em>
+    </div>
+      <p>
+        <em>
+        The export archive will be generated into the var directory of your Zope instance.
+        </em>
+      </p>
+
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_hierarchy" id="export_hierarchy"
+             checked="checked" class="noborder" />
+      <label for="export_hierarchy"
+             i18n:translate="cpsio_label_export_hierarchy">Export hierarchy</label>
+      <div style="font-style:italic;margin:0.5em 0.5em"
+           i18n:translate="cpsio_label_export_hierarchy_required"></div>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="export_hierarchy_save_local_roles"
+             id="export_hierarchy_save_local_roles"
+             checked="checked" class="noborder" />
+      <label for="export_hierarchy_save_local_roles"
+             i18n:translate="cpsio_label_save_local_roles">Save local roles</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="export_hierarchy_save_boxes"
+             id="export_hierarchy_save_boxes"
+             checked="checked" class="noborder" />
+      <label for="export_hierarchy_save_boxes"
+             i18n:translate="cpsio_label_save_boxes">Save box configuration</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="export_hierarchy_save_portlets"
+             id="export_hierarchy_save_portlets"
+             checked="checked" class="noborder" />
+      <label for="export_hierarchy_save_portlets"
+             i18n:translate="cpsio_label_save_portlets">Save portlets</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="export_hierarchy_save_local_themes"
+             id="export_hierarchy_save_local_themes"
+             checked="checked" class="noborder" />
+      <label for="export_hierarchy_save_local_themes"
+             i18n:translate="cpsio_label_save_local_themes">Save local themes</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_documents" id="export_documents"
+             checked="checked" class="noborder" />
+      <label for="export_documents"
+             i18n:translate="cpsio_label_export_documents">Export documents</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_workflows" id="export_workflows"
+             checked="checked" class="noborder" />
+      <label for="export_workflows"
+             i18n:translate="cpsio_label_export_workflows">Export workflows</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_portal_types" id="export_portal_types"
+             checked="checked" class="noborder" />
+      <label for="export_portal_types"
+             i18n:translate="cpsio_label_export_portal_types">Export portal types</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_schemas" id="export_schemas"
+             checked="checked" class="noborder" />
+      <label for="export_schemas"
+             i18n:translate="cpsio_label_export_schemas">Export schemas</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_layouts" id="export_layouts"
+             checked="checked" class="noborder" />
+      <label for="export_layouts"
+             i18n:translate="cpsio_label_export_layouts">Export layouts</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="export_layouts_widget_types"
+             id="export_layouts_widget_types"
+             checked="checked" class="noborder" />
+      <label for="export_layouts_widget_types"
+             i18n:translate="cpsio_label_save_widgets">Export widget types</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_vocabularies" id="export_vocabularies"
+             checked="checked" class="noborder" />
+      <label for="export_vocabularies"
+             i18n:translate="cpsio_label_export_vocabularies">Export vocabularies</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_theme_settings" id="export_theme_settings"
+             checked="checked" class="noborder" />
+      <label for="export_theme_settings"
+             i18n:translate="cpsio_label_export_theme_settings">Export theme settings</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="export_custom_skins" id="export_custom_skins"
+             checked="checked" class="noborder" />
+      <label for="export_custom_skins"
+             i18n:translate="cpsio_label_export_custom_skins">Export custom skins</label>
+    </div>
+    <div style="margin:2em 0.5em 0.5em 0.5em">
+      <input type="hidden" name="export_class" tal:attributes="value io_class" />
+      <input type="hidden" name="export_template"
+             tal:attributes="value template/id" />
+      <input type="submit" name="cps3exporter:method"
+             class="standalone" value="cpsio_button_export"
+             i18n:attributes="value" />
+    </div>
+  </form>
+
+</metal:block>
+
+</html>

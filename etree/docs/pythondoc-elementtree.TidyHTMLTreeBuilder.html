@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=us-ascii' />
+<title>The elementtree.TidyHTMLTreeBuilder Module</title>
+<link rel='stylesheet' href='effbot.css' type='text/css' />
+</head>
+<body>
+<h1>The elementtree.TidyHTMLTreeBuilder Module</h1>
+<p>Tools to build well-formed element trees from arbitrary HTML or XHTML
+files, based on the TIDY parser library.
+</p><p>
+This tree builder requires the <b>_elementtidy</b> extension module
+(available from
+<a href="http://effbot.org/downloads">http://effbot.org/downloads</a>).
+</p><h2>Module Contents</h2>
+<dl>
+<dt><a id='elementtree.TidyHTMLTreeBuilder.parse-function' name='elementtree.TidyHTMLTreeBuilder.parse-function'><b>parse(source)</b></a> [<a href='#elementtree.TidyHTMLTreeBuilder.parse-function'>#</a>]</dt>
+<dd>
+<p>Parses an HTML document into an XHTML-style element tree.</p>
+<dl>
+<dt><i>source</i></dt>
+<dd>
+A filename or file object containing HTML data.</dd>
+<dt>Returns:</dt>
+<dd>
+An ElementTree instance</dd>
+</dl><br />
+</dd>
+<dt><b>TidyHTMLTreeBuilder()</b> (class) [<a href='#elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder-class'>#</a>]</dt>
+<dd>
+<p>ElementTree builder for HTML source code.</p>
+<dl>
+<dt>Raises <b>RuntimeError</b>:</dt><dd>
+If the _elementtidy processor is not available.</dd>
+</dl><br />
+<p>For more information about this class, see <a href='#elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder-class'><i>The TidyHTMLTreeBuilder Class</i></a>.</p>
+</dd>
+<dt><a id='elementtree.TidyHTMLTreeBuilder.TreeBuilder-variable' name='elementtree.TidyHTMLTreeBuilder.TreeBuilder-variable'><b>TreeBuilder</b></a> (variable) [<a href='#elementtree.TidyHTMLTreeBuilder.TreeBuilder-variable'>#</a>]</dt>
+<dd>
+<p>An alias for the <b>TidyHTMLTreeBuilder</b> class.
+</p></dd>
+</dl>
+<h2><a id='elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder-class' name='elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder-class'>The TidyHTMLTreeBuilder Class</a></h2>
+<dl>
+<dt><b>TidyHTMLTreeBuilder()</b> (class) [<a href='#elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder-class'>#</a>]</dt>
+<dd>
+<p>ElementTree builder for HTML source code.  This builder converts an
+HTML document or fragment to an XHTML ElementTree, by running it
+through the _elementtidy processor.</p>
+<dl>
+<dt>Raises <b>RuntimeError</b>:</dt><dd>
+If the _elementtidy processor is not available.</dd>
+</dl><br />
+</dd>
+<dt><a id='elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder.close-method' name='elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder.close-method'><b>close()</b></a> &rArr; Element [<a href='#elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder.close-method'>#</a>]</dt>
+<dd>
+<p>Finishes feeding data to the parser.</p>
+<dl>
+<dt>Returns:</dt>
+<dd>
+An element structure.</dd>
+</dl><br />
+</dd>
+<dt><a id='elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder.feed-method' name='elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder.feed-method'><b>feed(text)</b></a> [<a href='#elementtree.TidyHTMLTreeBuilder.TidyHTMLTreeBuilder.feed-method'>#</a>]</dt>
+<dd>
+<p>Feeds data to the parser.</p>
+<dl>
+<dt><i>data</i></dt>
+<dd>
+Encoded data.</dd>
+</dl><br />
+</dd>
+</dl>
+</body></html>

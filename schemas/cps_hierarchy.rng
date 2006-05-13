@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2004 Nuxeo SARL (http://nuxeo.com)
+Author: Emmanuel Pietriga (ep@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for a hierarchy of CPS folders exported by CPSIO.CPS3Exporter
+                                                      imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpshierarchy#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:chc="http://www.nuxeo.com/2004/06/cpshierarchy#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start>
+  <ref name="root"/>
+</start>
+
+<define name="root">
+  <element name="chc:hierarchy">
+    <interleave> 
+      <zeroOrMore>
+        <ref name="folder"/>
+      </zeroOrMore>
+      <optional><ref name="boxes"/></optional>
+    </interleave>
+  </element>
+</define>
+
+<define name="folder">
+  <element name="chc:folder">
+    <interleave>
+      <optional><ref name="properties"/></optional>
+      <ref name="datamodel"/>
+      <optional><ref name="localRoles"/></optional>
+      <optional><ref name="boxes"/></optional>
+      <optional><ref name="workflow_chains"/></optional>
+      <zeroOrMore><ref name="folder"/></zeroOrMore>
+    </interleave>
+    <attribute name="id"/>
+    <attribute name="portal_type"/>
+  </element>
+</define>
+
+<define name="properties">
+  <element name="chc:properties">
+    <zeroOrMore>
+      <element>
+        <anyName/>
+        <text/>
+        <attribute name="type"/>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="datamodel">
+  <element name="chc:datamodel">
+    <zeroOrMore>
+      <element name="chc:field">
+        <text/>
+        <attribute name="type"/>
+        <attribute name="name"/>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="localRoles">
+  <element name="chc:localRoles">
+    <zeroOrMore>
+      <element name="chc:usrRoles">
+        <text/>
+        <attribute name="roles"/>
+        <attribute name="usrid"/>
+      </element>
+    </zeroOrMore>
+    <optional>
+      <attribute name="blocked_local_roles"><data type="boolean"/></attribute>
+    </optional>
+  </element>
+</define>
+
+<define name="boxes">
+  <element name="chc:boxes">
+    <zeroOrMore>
+      <element name="chc:box">
+        <attribute name="boxType"/>
+        <attribute name="id"/>
+        <zeroOrMore>
+          <element name="chc:property">
+            <attribute name="name"/>
+            <attribute name="type"/>
+            <text/>
+          </element>
+        </zeroOrMore>
+        <optional><ref name="guard"/></optional>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="guard">
+  <element name="chc:guard">
+    <optional><attribute name="permissions"/></optional>
+    <optional><attribute name="roles"/></optional>
+    <optional><attribute name="expr"/></optional>
+  </element>
+</define>
+
+<define name="workflow_chains">
+  <element name="chc:workflow_chains">
+    <zeroOrMore>
+      <element name="chc:chain">
+        <attribute name="portal_type"/>
+        <attribute name="value"/>
+        <attribute name="type"/>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+</grammar>

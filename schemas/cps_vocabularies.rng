@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2004 Nuxeo SARL (http://nuxeo.com)
+Author: Emmanuel Pietriga (ep@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for CPS vocabularies exported by CPSIO.CPS3Exporter
+                                            imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpsvocabularies#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:cvc="http://www.nuxeo.com/2004/06/cpsvocabularies#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start>
+  <ref name="root"/>
+</start>
+
+<define name="root">
+ <element name="cvc:vocabularies">
+    <zeroOrMore>
+      <choice>
+        <ref name="cpsVocabulary"/>
+        <ref name="methodVocabulary"/>
+        <ref name="directoryVocabulary"/>
+        <ref name="directoryEntryVocabulary"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="cpsVocabulary">
+  <element name="cvc:cpsVocabulary">
+    <interleave>
+      <optional><ref name="description"/></optional>
+      <zeroOrMore><ref name="item"/></zeroOrMore>
+    </interleave>
+    <ref name="common_attrs"/>
+    <optional>
+      <attribute name="acl_write_roles"/>
+    </optional>
+  </element>
+</define>
+
+<define name="methodVocabulary">
+  <element name="cvc:methodVocabulary">
+    <interleave>
+      <optional><ref name="description"/></optional>
+      <optional><ref name="empty_key_value"/></optional>
+    </interleave>
+    <ref name="common_attrs"/>
+    <ref name="key_attrs"/>
+    <attribute name="get_vocabulary_method"/>
+  </element>
+</define>
+
+<define name="directoryVocabulary">
+  <element name="cvc:directoryVocabulary">
+    <interleave>
+      <optional><ref name="description"/></optional>
+      <optional><ref name="empty_key_value"/></optional>
+    </interleave>
+    <ref name="common_attrs"/>
+    <ref name="key_attrs"/>
+    <attribute name="directory"/>
+  </element>
+</define>
+
+<define name="directoryEntryVocabulary">
+  <element name="cvc:directoryEntryVocabulary">
+    <interleave>
+      <optional><ref name="description"/></optional>
+      <optional><ref name="empty_key_value"/></optional>
+    </interleave>
+    <ref name="common_attrs"/>
+    <ref name="key_attrs"/>
+    <attribute name="directory"/>
+    <optional>
+      <attribute name="entry_id"/>
+    </optional>
+    <optional>
+      <attribute name="voc_entry_field"/>
+    </optional>
+  </element>
+</define>
+
+<define name="item">
+  <element name="cvc:item">
+    <text/>
+    <attribute name="key"/>
+    <optional><attribute name="msgid"/></optional>
+  </element>
+</define>
+
+<define name="description">
+  <element name="cvc:description"><text/></element>
+</define>
+
+<define name="empty_key_value">
+  <element name="cvc:empty_key_value"><text/></element>
+</define>
+
+<define name="common_attrs">
+  <attribute name="id"/>
+  <optional>
+    <attribute name="title"/>
+  </optional>
+  <optional>
+    <attribute name="title_msgid"/>
+  </optional>
+</define>
+
+<define name="key_attrs">
+  <optional>
+    <attribute name="empty_key_pos"/>
+  </optional>
+  <optional>
+    <attribute name="add_empty_key"/>
+  </optional>
+</define>
+
+</grammar>

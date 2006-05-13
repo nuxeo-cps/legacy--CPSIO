@@ -1,0 +1,33 @@
+<html metal:use-macro="here/main_template/macros/master">
+
+<!-- import form to be used from CPS3, CMF/Plone2, ... -->
+
+<metal:block fill-slot="header" />
+
+<metal:block fill-slot="main"
+             tal:define="errormsg options/error_message|nothing">
+
+  <form method="post" action="." enctype="multipart/form-data">
+    <div style="margin:0.5em">
+      <label for="import_filename" i18n:translate="cpsio_label_import_module">
+        Import module:
+      </label>
+      <select name="import_module:string"
+              id="import_module">
+        <option tal:repeat="importer python:here.portal_io.listImportModules()"
+                tal:attributes="name importer"
+                tal:content="importer"></option>
+      </select>
+      <span tal:condition="python:errormsg == 'error_module'"
+            i18n:translate="cpsio_psm_missing_module">You must specify a module.</span>
+    </div>
+    <div>
+      <input type="submit" name="process_import_options:method"
+             class="standalone" value="button_select"
+             i18n:attributes="value" />
+    </div>
+  </form>
+
+</metal:block>
+
+</html>

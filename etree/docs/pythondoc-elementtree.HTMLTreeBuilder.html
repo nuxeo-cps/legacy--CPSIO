@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=us-ascii' />
+<title>The elementtree.HTMLTreeBuilder Module</title>
+<link rel='stylesheet' href='effbot.css' type='text/css' />
+</head>
+<body>
+<h1>The elementtree.HTMLTreeBuilder Module</h1>
+<p>Tools to build element trees from HTML files.</p>
+<h2>Module Contents</h2>
+<dl>
+<dt><b>HTMLTreeBuilder(builder=None)</b> (class) [<a href='#elementtree.HTMLTreeBuilder.HTMLTreeBuilder-class'>#</a>]</dt>
+<dd>
+<p>ElementTree builder for HTML source code.</p>
+<p>For more information about this class, see <a href='#elementtree.HTMLTreeBuilder.HTMLTreeBuilder-class'><i>The HTMLTreeBuilder Class</i></a>.</p>
+</dd>
+<dt><a id='elementtree.HTMLTreeBuilder.parse-function' name='elementtree.HTMLTreeBuilder.parse-function'><b>parse(source)</b></a> [<a href='#elementtree.HTMLTreeBuilder.parse-function'>#</a>]</dt>
+<dd>
+<p>Parse an HTML document or document fragment.</p>
+<dl>
+<dt><i>source</i></dt>
+<dd>
+A filename or file object containing HTML data.</dd>
+<dt>Returns:</dt>
+<dd>
+An ElementTree instance</dd>
+</dl><br />
+</dd>
+<dt><a id='elementtree.HTMLTreeBuilder.TreeBuilder-variable' name='elementtree.HTMLTreeBuilder.TreeBuilder-variable'><b>TreeBuilder</b></a> (variable) [<a href='#elementtree.HTMLTreeBuilder.TreeBuilder-variable'>#</a>]</dt>
+<dd>
+<p>An alias for the <b>HTMLTreeBuilder</b> class.
+</p></dd>
+</dl>
+<h2><a id='elementtree.HTMLTreeBuilder.HTMLTreeBuilder-class' name='elementtree.HTMLTreeBuilder.HTMLTreeBuilder-class'>The HTMLTreeBuilder Class</a></h2>
+<dl>
+<dt><b>HTMLTreeBuilder(builder=None)</b> (class) [<a href='#elementtree.HTMLTreeBuilder.HTMLTreeBuilder-class'>#</a>]</dt>
+<dd>
+<p>ElementTree builder for HTML source code.  This builder converts an
+HTML document or fragment to an ElementTree.
+</p><p>
+The parser is relatively picky, and requires balanced tags for most
+elements.  However, elements belonging to the following group are
+automatically closed: P, LI, TR, TH, and TD.  In addition, the
+parser automatically inserts end tags immediately after the start
+tag, and ignores any end tags for the following group: IMG, HR,
+META, and LINK.
+
+</p></dd>
+<dt><a id='elementtree.HTMLTreeBuilder.HTMLTreeBuilder.close-method' name='elementtree.HTMLTreeBuilder.HTMLTreeBuilder.close-method'><b>close()</b></a> [<a href='#elementtree.HTMLTreeBuilder.HTMLTreeBuilder.close-method'>#</a>]</dt>
+<dd>
+<p>Flush parser buffers, and return the root element.</p>
+<dl>
+<dt>Returns:</dt>
+<dd>
+An Element instance.</dd>
+</dl><br />
+</dd>
+</dl>
+</body></html>

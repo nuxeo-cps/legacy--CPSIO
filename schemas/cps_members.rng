@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2005 Nuxeo SARL (http://nuxeo.com)
+Author: Ruslan Spivak (rspivak@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for CPS3 members exported by CPSIO.CPS3Exporter
+                                        imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpsmembers#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:cmr="http://www.nuxeo.com/2004/06/cpsmember#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start>
+  <ref name="root"/>
+</start>
+
+<define name="root">
+  <element name="cmr:members">
+    <zeroOrMore>
+      <ref name="member"/>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="member">
+  <element name="cmr:member">
+    <attribute name="id"/>
+    <attribute name="password"/>
+    <attribute name="givenName"/>
+    <attribute name="sn"/>
+    <attribute name="email"/>
+    <optional><attribute name="fullname"/></optional>
+    <optional>
+      <attribute name="homeless"><data type="int"/></attribute>
+    </optional>
+    <interleave>
+      <element name="cmr:groups">
+        <zeroOrMore>
+          <optional><element name="cmr:group"><text/></element></optional>
+        </zeroOrMore>
+      </element>
+      <element name="cmr:roles">
+        <zeroOrMore>
+          <optional><element name="cmr:role"><text/></element></optional>
+        </zeroOrMore>
+      </element>
+    </interleave>
+    <zeroOrMore>
+      <element>
+        <anyName/>
+        <zeroOrMore><attribute><anyName/></attribute></zeroOrMore>
+        <zeroOrMore>
+          <optional><element><anyName/><text/></element></optional>
+        </zeroOrMore>
+        <text/>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+</grammar>

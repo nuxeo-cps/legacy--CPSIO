@@ -1,0 +1,162 @@
+<html metal:use-macro="here/main_template/macros/master">
+
+<!-- CPS 3 Import module options template -->
+
+<metal:block fill-slot="header" />
+
+<metal:block fill-slot="main"
+             tal:define="io_class options/io_class;
+                         error_msg options/error_msg|nothing">
+
+  <form method="post" action="." enctype="multipart/form-data">
+    <div style="margin:0.5em 0.5em">
+      <label for="import_file_name" i18n:translate="cpsio_label_filename">
+        Filename:
+      </label>
+      <input type="text" name="import_file_name" id="import_file_name" />
+      <strong tal:condition="python:error_msg == 'err_file'"
+              i18n:translate="cpsio_err_missing_filename">You must specify a filename.</strong>
+        <em>For example: import.zip</em>
+    </div>
+    <p>
+      <em>
+        You have to put the archive into the import directory of your Zope instance.
+      </em>
+    </p>
+
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_members" id="import_members"
+             class="noborder" />
+      <label for="import_members"
+             i18n:translate="cpsio_label_import_members">Import members</label>
+      <div style="font-style:italic;margin:0.5em 0.5em"
+           i18n:translate="cpsio_label_import_members"></div>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_groups" id="import_groups"
+             class="noborder" />
+      <label for="import_groups"
+             i18n:translate="cpsio_label_import_groups">Import groups</label>
+      <div style="font-style:italic;margin:0.5em 0.5em"
+           i18n:translate="cpsio_label_import_groups"></div>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_hierarchy" id="import_hierarchy"
+             checked="checked" class="noborder" />
+      <label for="import_hierarchy"
+             i18n:translate="cpsio_label_import_hierarchy">Import hierarchy</label>
+      <div style="font-style:italic;margin:0.5em 0.5em"
+           i18n:translate="cpsio_label_import_hierarchy_required"></div>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_hierarchy_restore_local_roles"
+             id="import_hierarchy_restore_local_roles"
+             checked="checked" class="noborder" />
+      <label for="import_hierarchy_restore_local_roles"
+             i18n:translate="cpsio_label_restore_local_roles">Restore local roles</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_hierarchy_restore_boxes"
+             id="import_hierarchy_restore_boxes"
+             checked="checked" class="noborder" />
+      <label for="import_hierarchy_restore_boxes"
+             i18n:translate="cpsio_label_restore_boxes">Restore box configuration</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_hierarchy_restore_portlets"
+             id="import_hierarchy_restore_portlets"
+             checked="checked" class="noborder" />
+      <label for="import_hierarchy_restore_portlets"
+             i18n:translate="cpsio_label_restore_portlets">Restore portlets</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_hierarchy_restore_local_themes"
+             id="import_hierarchy_restore_local_themes"
+             checked="checked" class="noborder" />
+      <label for="import_hierarchy_restore_local_themes"
+             i18n:translate="cpsio_label_restore_local_themes">Restore local themes</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_documents" id="import_documents"
+             checked="checked" class="noborder" />
+      <label for="import_documents"
+             i18n:translate="cpsio_label_import_documents">Import documents</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_documents_overwrite"
+             id="import_documents_overwrite"
+             checked="checked" class="noborder" />
+      <label for="import_documents_overwrite"
+             i18n:translate="cpsio_label_overwrite_documents">
+        Overwrite existing documents in case of conflict</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_workflows" id="import_workflows"
+             checked="checked" class="noborder" />
+      <label for="import_workflows"
+             i18n:translate="cpsio_label_import_workflows">Import workflows</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_portal_types" id="import_portal_types"
+             checked="checked" class="noborder" />
+      <label for="import_portal_types"
+             i18n:translate="cpsio_label_import_portal_types">Import portal types</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_schemas" id="import_schemas"
+             checked="checked" class="noborder" />
+      <label for="import_schemas"
+             i18n:translate="cpsio_label_import_schemas">Import schemas</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_layouts" id="import_layouts"
+             checked="checked" class="noborder" />
+      <label for="import_layouts"
+             i18n:translate="cpsio_label_import_layouts">Import layouts</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_layouts_widget_types"
+             id="import_layouts_widget_types"
+             checked="checked" class="noborder" />
+      <label for="import_layouts_widget_types"
+             i18n:translate="cpsio_label_restore_widgets">Import widget types</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_vocabularies" id="import_vocabularies"
+             checked="checked" class="noborder" />
+      <label for="import_vocabularies"
+             i18n:translate="cpsio_label_import_vocabularies">Import vocabularies</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_theme_settings" id="import_theme_settings"
+             checked="checked" class="noborder" />
+      <label for="import_theme_settings"
+             i18n:translate="cpsio_label_import_theme_settings">Import theme settings</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="checkbox" name="import_custom_skins" id="import_custom_skins"
+             checked="checked" class="noborder" />
+      <label for="import_custom_skins"
+             i18n:translate="cpsio_label_import_custom_skins">Import custom skins</label>
+    </div>
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_custom_skins_overwrite"
+             id="import_custom_skins_overwrite"
+             checked="checked" class="noborder" />
+      <label for="import_custom_skins_overwrite"
+             i18n:translate="cpsio_label_overwrite_custom_skins">
+        Overwrite existing items in case of conflict</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="hidden" name="import_class" tal:attributes="value io_class" />
+      <input type="hidden" name="import_template"
+             tal:attributes="value template/id" />
+      <input type="submit" name="cps3importer:method"
+             class="standalone" value="cpsio_button_import"
+             i18n:attributes="value" />
+    </div>
+  </form>
+
+</metal:block>
+
+</html>

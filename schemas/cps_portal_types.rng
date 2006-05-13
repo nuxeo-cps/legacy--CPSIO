@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2004 Nuxeo SARL (http://nuxeo.com)
+Author: Emmanuel Pietriga (ep@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for CPS portal types exported by CPSIO.CPS3Exporter
+                                            imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpsportaltypes#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:cpt="http://www.nuxeo.com/2004/06/cpsportaltypes#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start>
+  <ref name="root"/>
+</start>
+
+<define name="root">
+ <element name="cpt:portalTypes">
+    <zeroOrMore>
+      <choice>
+        <ref name="cpsfti"/>
+        <ref name="cmffti"/>
+      </choice>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="cpsfti">
+  <element name="cpt:cpsfti">
+    <interleave>
+      <ref name="title"/>
+      <ref name="description"/>
+      <optional>
+        <ref name="allowed_content_types"/>
+      </optional>
+      <optional>
+        <ref name="schemas"/>
+      </optional>
+      <optional>
+        <ref name="layouts"/>
+      </optional>
+      <optional>
+        <ref name="flexible_layouts"/>
+      </optional>
+      <optional>
+        <ref name="storage_methods"/>
+      </optional>
+      <optional>
+        <ref name="actions"/>
+      </optional>
+    </interleave>
+    <ref name="cpsftiAttributes"/>
+  </element>
+</define>
+
+<define name="cmffti">
+  <element name="cpt:cmffti">
+    <interleave>
+      <ref name="title"/>
+      <ref name="description"/>
+      <optional>
+        <ref name="allowed_content_types"/>
+      </optional>
+      <optional>
+        <ref name="actions"/>
+      </optional>
+    </interleave>
+    <ref name="cmfftiAttributes"/>
+  </element>
+</define>
+
+<define name="title">
+  <element name="cpt:title">
+    <attribute name="type"><text/></attribute>
+    <text/>
+  </element>
+</define>
+
+<define name="description">
+  <element name="cpt:description">
+    <attribute name="type"><text/></attribute>
+    <text/>
+  </element>
+</define>
+
+<define name="allowed_content_types">
+  <element name="cpt:allowed_content_types">
+    <attribute name="type"><text/></attribute>
+    <text/>
+  </element>
+</define>
+
+<define name="schemas">
+  <element name="cpt:schemas">
+    <attribute name="type"><text/></attribute>
+    <text/>
+  </element>
+</define>
+
+<define name="layouts">
+  <element name="cpt:layouts">
+    <attribute name="type"><text/></attribute>
+    <text/>
+  </element>
+</define>
+
+<define name="flexible_layouts">
+  <element name="cpt:flexible_layouts">
+    <attribute name="type"><text/></attribute>
+    <text/>
+  </element>
+</define>
+
+<define name="storage_methods">
+  <element name="cpt:storage_methods">
+    <attribute name="type"><text/></attribute>
+    <text/>
+  </element>
+</define>
+
+<define name="actions">
+  <element name="cpt:actions">
+    <zeroOrMore>
+      <element name="cpt:action">
+        <attribute name="id"/>
+        <attribute name="name"/>
+        <optional>
+          <attribute name="visibility"/>
+        </optional>
+        <optional>
+          <attribute name="category"/>
+        </optional>
+        <interleave>
+          <element name="cpt:expression"><text/></element>
+          <optional><element name="cpt:condition"><text/></element></optional>
+          <optional><element name="cpt:permission"><text/></element></optional>
+        </interleave>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="cmfftiAttributes">
+  <ref name="ftiAttributes"/>
+  <attribute name="cps_is_portalbox"><data type="boolean"/></attribute>
+</define>
+
+<define name="cpsftiAttributes">
+  <ref name="ftiAttributes"/>
+</define>
+
+<define name="ftiAttributes">
+  <attribute name="content_meta_type"/>
+  <attribute name="allow_discussion"><data type="boolean"/></attribute>
+  <attribute name="content_icon"/>
+  <attribute name="cps_is_searchable"><data type="boolean"/></attribute>
+  <attribute name="cps_proxy_type">
+    <choice>
+      <value>document</value>
+      <value>folder</value>
+      <value>folderishdocument</value>
+      <value></value>
+    </choice>
+  </attribute>
+  <attribute name="factory"/>
+  <attribute name="filter_content_types"><data type="boolean"/></attribute>
+  <attribute name="global_allow"><data type="boolean"/></attribute>
+  <attribute name="id"/>
+  <attribute name="immediate_view"/>
+  <attribute name="product"/>
+  <attribute name="cps_display_as_document_in_listing"><data type="boolean"/></attribute>
+</define>
+
+</grammar>

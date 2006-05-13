@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2004 Nuxeo SARL (http://nuxeo.com)
+Author: Emmanuel Pietriga (ep@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for CPS workflows exported by CPSIO.CPS3Exporter
+                                         imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpsworkflows#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:cwf="http://www.nuxeo.com/2004/06/cpsworkflows#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start>
+  <ref name="root"/>
+</start>
+
+<define name="root">
+  <element name="cwf:workflows">
+    <interleave>
+      <element name="cwf:globalChains">
+        <zeroOrMore><ref name="globalChain"/></zeroOrMore>
+      </element>
+      <element name="cwf:workflowDefinitions">
+        <zeroOrMore><ref name="workflow"/></zeroOrMore>
+      </element>
+      <element name="cwf:transitionBehaviors">
+        <zeroOrMore><ref name="transitionBehavior"/></zeroOrMore>
+      </element>
+      <element name="cwf:triggerTypes">
+        <zeroOrMore><ref name="triggerType"/></zeroOrMore>
+      </element>
+    </interleave>
+  </element>
+</define>
+
+<define name="globalChain">
+  <element name="cwf:globalChain">
+    <attribute name="portal_type"/>
+    <attribute name="chain"/>
+  </element>
+</define>
+
+<define name="workflow">
+  <element name="cwf:workflow">
+    <ref name="common_attrs"/>
+    <optional><attribute name="state_variable"/></optional>
+    <optional><attribute name="permissions"/></optional>
+    <interleave>
+      <element name="cwf:states">
+        <zeroOrMore><ref name="state"/></zeroOrMore>
+      </element>
+      <element name="cwf:transitions">
+        <zeroOrMore><ref name="transition"/></zeroOrMore>
+      </element>
+      <element name="cwf:scripts">
+        <zeroOrMore><ref name="script"/></zeroOrMore>
+      </element>
+      <element name="cwf:variables">
+        <zeroOrMore><ref name="variable"/></zeroOrMore>
+      </element>
+    </interleave>
+  </element>
+</define>
+
+<define name="state">
+  <element name="cwf:state">
+    <ref name="common_attrs"/>
+    <attribute name="description"/>
+    <optional><attribute name="allowedTransitions"/></optional>
+    <optional>
+      <element name="cwf:permissions">
+        <zeroOrMore>
+          <element name="cwf:permission">
+            <attribute name="title"/>
+            <attribute name="acquired"><data type="boolean"/></attribute>
+            <optional><attribute name="roles"/></optional>
+          </element>
+        </zeroOrMore>
+      </element>
+    </optional>
+    <optional>
+      <element name="cwf:variableValues">
+        <zeroOrMore>
+          <element name="cwf:variableValue">
+            <attribute name="name"/>
+            <attribute name="value"/>
+            <attribute name="type"/>
+          </element>
+        </zeroOrMore>
+      </element>
+    </optional>
+  </element>
+</define>
+
+<define name="transition">
+  <element name="cwf:transition">
+    <ref name="common_attrs"/>
+    <attribute name="description"/>
+    <attribute name="new_state_id"/>
+    <attribute name="trigger_type"/>
+    <optional><attribute name="actbox_name"/></optional>
+    <optional><attribute name="actbox_category"/></optional>
+    <optional><attribute name="actbox_url"/></optional>
+    <optional><attribute name="script_name"/></optional>
+    <optional><attribute name="after_script_name"/></optional>
+    <optional><attribute name="transition_behavior"/></optional>
+    <optional><attribute name="clone_allowed_transitions"/></optional>
+    <optional><attribute name="checkout_allowed_initial_transitions"/></optional>
+    <optional><attribute name="checkin_allowed_transitions"/></optional>
+    <optional><ref name="guard"/></optional>
+  </element>
+</define>
+
+<define name="script">
+  <element name="cwf:script">
+    <ref name="common_attrs"/>
+    <optional><attribute name="proxy_roles"/></optional>
+    <optional><attribute name="owner"/></optional>
+    <element name="cwf:code">
+      <attribute name="xml:space">
+        <choice><value>preserve</value></choice>
+      </attribute>
+      <text/>
+    </element>
+  </element>
+</define>
+
+<define name="variable">
+  <element name="cwf:variable">
+    <attribute name="id"/>
+    <attribute name="description"/>
+    <attribute name="availableToCatalog"><data type="boolean"/></attribute>
+    <attribute name="storeInWorkflowStatus"><data type="boolean"/></attribute>
+    <attribute name="always_update"><data type="boolean"/></attribute>
+    <interleave>
+      <optional>
+        <element name="cwf:defaultValue"><text/></element>
+      </optional>
+      <optional>
+        <element name="cwf:defaultExpression"><text/></element>
+      </optional>
+    </interleave>
+    <optional><ref name="guard"/></optional>
+  </element>
+</define>
+
+<define name="triggerType">
+  <element name="cwf:triggerType">
+    <attribute name="name"/>
+    <attribute name="ref"/>
+  </element>
+</define>
+
+<define name="transitionBehavior">
+  <element name="cwf:transitionBehavior">
+    <attribute name="name"/>
+    <attribute name="ref"/>
+  </element>
+</define>
+
+<define name="common_attrs">
+  <attribute name="id"/>
+  <attribute name="title"/>
+</define>
+
+<define name="guard">
+  <element name="cwf:guard">
+    <optional><attribute name="permissions"/></optional>
+    <optional><attribute name="roles"/></optional>
+    <optional><attribute name="expr"/></optional>
+  </element>
+</define>
+
+</grammar>

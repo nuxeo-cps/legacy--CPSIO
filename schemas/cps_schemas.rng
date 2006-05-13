@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2004 Nuxeo SARL (http://nuxeo.com)
+Author: Emmanuel Pietriga (ep@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for CPS schemas exported by CPSIO.CPS3Exporter
+                                       imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpsschemas#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:csh="http://www.nuxeo.com/2004/06/cpsschemas#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start combine="choice">
+  <ref name="root"/>
+</start>
+
+<define name="root" combine="choice">
+ <element name="csh:schemas">
+    <zeroOrMore>
+      <ref name="schema"/>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="schema">
+  <element name="csh:schema">
+    <zeroOrMore>
+      <ref name="field"/>
+    </zeroOrMore>
+    <attribute name="id"/>
+  </element>
+</define>
+
+<define name="field">
+  <element name="csh:field">
+    <attribute name="id"/>
+    <attribute name="field_type"/>
+    <zeroOrMore>
+      <element>
+        <anyName/>
+        <text/>
+        <attribute name="type"/>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+</grammar>

@@ -1,0 +1,47 @@
+<html metal:use-macro="here/main_template/macros/master">
+
+<!-- CPSSkins Import module options template -->
+
+<metal:block fill-slot="header" />
+
+<metal:block fill-slot="main"
+             tal:define="io_class options/io_class;
+                         error_msg options/error_msg|nothing">
+
+  <form method="post" action="." enctype="multipart/form-data">
+    <div style="margin:0.5em 0.5em">
+      <label for="import_file_name" i18n:translate="cpsio_label_filename">
+        Filename:
+      </label>
+      <input type="text" name="import_file_name" id="import_file_name" />
+      <strong tal:condition="python:error_msg == 'err_file'"
+              i18n:translate="cpsio_err_missing_filename">You must specify a filename.</strong>
+        <em>For example: import.zip</em>
+    </div>
+      <p>
+        <em>
+        You have to put the archive into the import directory of your Zope instance.
+        </em>
+      </p>
+
+    <div style="margin:0.5em 2.5em">
+      <input type="checkbox" name="import_overwrite"
+             id="import_overwrite"
+             checked="checked" class="noborder" />
+      <label for="import_overwrite"
+             i18n:translate="cpsio_label_cpsskins_overwrite">
+        Overwrite existing theme in case of conflict</label>
+    </div>
+    <div style="margin:0.5em 0.5em">
+      <input type="hidden" name="import_class" tal:attributes="value io_class" />
+      <input type="hidden" name="import_template"
+             tal:attributes="value template/id" />
+      <input type="submit" name="cpsskinsimporter:method"
+             class="standalone" value="cpsio_button_import"
+             i18n:attributes="value" />
+    </div>
+  </form>
+
+</metal:block>
+
+</html>

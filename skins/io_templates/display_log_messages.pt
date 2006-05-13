@@ -1,0 +1,17 @@
+<tal:block define="psm options/portal_status_message|nothing;
+                   dummy_psm python:psm and request.set('portal_status_message', psm)">
+<html metal:use-macro="here/main_template/macros/master">
+
+<!-- display log messages after import/export -->
+
+<metal:block fill-slot="header"/>
+
+<metal:block fill-slot="main"
+             tal:define="log options/log|nothing;">
+
+<pre tal:content="log" />
+
+</metal:block>
+
+</html>
+</tal:block>

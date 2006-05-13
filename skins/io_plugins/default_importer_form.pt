@@ -1,0 +1,70 @@
+<html metal:use-macro="here/main_template/macros/master">
+
+<!-- Default Import module options template -->
+
+<metal:block fill-slot="header" />
+
+<metal:block fill-slot="main"
+             tal:define="io_class options/io_class;
+                         portal_io here/portal_io;
+                         options_table python:portal_io.getImportOptionsTable(io_class);
+                         error_msg options/error_msg|nothing">
+
+  <form method="post" action="." enctype="multipart/form-data">
+    <div style="margin:0.5em 0.5em">
+      <label for="import_file_name" i18n:translate="cpsio_label_filename">
+        Filename:
+      </label>
+      <input type="text" name="import_file_name" id="import_file_name" />
+      <strong tal:condition="python:error_msg == 'err_file'"
+              i18n:translate="cpsio_err_missing_filename">You must specify a filename.</strong>
+        <em>For example: import.zip</em>
+    </div>
+      <p>
+        <em>
+        You have to put the archive into the import directory of your Zope instance.
+        </em>
+      </p>
+
+    <tal:block repeat="option options_table">
+    <tal:block define="option_id option/id;
+                       option_depth option/depth;
+                       option_title option/title;
+                       option_label option/label">
+    <div style="margin:0.5em 0.5em"
+        tal:define="margin python:2*int(option_depth)+0.5"
+        tal:attributes="style string:margin:0.5em ${margin}em;">
+        <input type="checkbox" name="option_id" id="option_id"
+               checked="checked" class="noborder"
+               tal:attributes="name option_id;
+                               id option_id"/>
+        <label tal:condition="python:not option_label or not getattr(here, 'Localizer', None)"
+               for="option_id"
+               tal:attributes="for option_id"
+               tal:content="python:option_title or option_id">
+          Option name
+        </label>
+        <label tal:condition="python:option_label and getattr(here, 'Localizer', None)"
+               for="option_id"
+               tal:attributes="for option_id"
+               i18n:translate=""
+               tal:content="option_label">
+          Option name
+        </label>
+    </div>
+    </tal:block>
+    </tal:block>
+
+    <div style="margin:0.5em 0.5em">
+      <input type="hidden" name="import_class" tal:attributes="value io_class" />
+      <input type="hidden" name="import_template"
+             tal:attributes="value template/id" />
+      <input type="submit" name="default_importer:method"
+             class="standalone" value="cpsio_button_import"
+             i18n:attributes="value" />
+    </div>
+  </form>
+
+</metal:block>
+
+</html>

@@ -1,0 +1,346 @@
+*******************************************
+** CPSIO V0.6.1 [R1 build 2006/02/17-20:19 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 33019
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Fix test
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.6.0 [R1 build 2006/01/23-17:28 by fermigier]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 31976
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- fixed bug in the portlet importer (LayoutImporter takes 4 arguments)
+- #1077 portlet guards are exported and imported.
+- Make explicit checks on CPSForum product installation for comments
+  export/import.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Removed obsolete widget types I/O.
+
+*******************************************
+** CPSIO V0.5.1 [R1 build 2005/11/08-16:55 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 29274
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Made file checking stronger and error messages associated with it clearer.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.5.0 [R1 build 2005/11/07-15:21 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 29057
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Removed the broken "Export" and "Import" tabs in the ZMI, fixes #1089.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- When exporting documents we make subtransaction commit on every
+  SUBTRANSACTION_COMMIT repository object to free memory.
+
+
+*******************************************
+** CPSIO V0.4.10 [R1 build 2005/10/11-17:08 by alienoid]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 28142
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Encode `id` parameter for File to latin9 for attached file when
+  importing document to repository to prevent possible UnicodeDecodeError
+  exceptions.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.4.9 [R1 build 2005/10/07-13:24 by alienoid]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 28063
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Changes to toLatin9 method to possibly fix
+  "ascii' codec can't decode ..." error when importing documents.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.4.8 [R1 build 2005/10/07-11:02 by alienoid]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 28057
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Added logging before and after calling `buildRepositoryDocument`.
+
+*******************************************
+** CPSIO V0.4.7 [R1 build 2005/09/30-10:12 by alienoid]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 27750
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- On importing documents we make subtransaction commit on every
+  SUBTRANSACTION_COMMIT object to free memory.
+
+*******************************************
+** CPSIO V0.4.6 [R1 build 2005/09/26-16:30 by alienoid]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 27595
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+-
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Added setting _cps_frozen attribute to document in repository if present
+  in xml file.
+
+*******************************************
+** CPSIO V0.4.5 [R1 build 2005/09/21-15:15 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 27306
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- #927: fixed some reimport problem.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.4.4 [R1 build 2005/08/28-22:04 by alienoid]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 26174
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Fixed bad LOG call.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Groups import + rng schema
+- Members import + rng schema
+- Subscriptions import + rng schema (switched off currently)
+- Preserving metadata field values on import like CreationDate,
+  ModificationDate, Language, Format, Creator
+- DateTime schema fields correctly handled on export/import, they are
+  not fall into 'instance' category any more.
+- Backward compatibility with CMF < 1.5, that's important for CPS3.2.x
+  versions.
+
+
+*******************************************
+** CPSIO V0.4.3 [R1 build 2005/08/05-15:37 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 25547
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Don't use 0-length __init__.py files, they cause problems with stupid
+  windows unarchivers.
+- Taking advantage of the new centralized CPSI18n.tests.translations module.
+- Fixed translation files through the CPSI18n/bin/fix_pos script.
+- Always pass the proxy to edit() to get correct reindexing.
+- the plugins sent exceptions.ValueError instances to the portal status message
+  instead of strings.
+- Replaced incorrect code producing broken urls using virtual hosting.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.4.2 [R1 build 2005/06/02-09:33 by fguillaume]
+** SVN URL: https://svn.nuxeo.org/pub/CPSIO/trunk Revision: 22058
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- files and images with names containing non latin9 characters could not be
+  imported. (DocumentImporter and PortletImporter)
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- Can work without elementtree installed on the current Python
+
+*******************************************
+** CPSIO V0.4.1 [R1 build 2005/04/13-16:04 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+-
+Bug fixes:
+~~~~~~~~~~
+- Updated i18n with new version of update_pos.
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.4.0 [R1 build 2005/03/07-16:07 by madarche]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- CPSSkins: import/export of global themes settings.
+- CPSSkins: import/export of local themes.
+- CPSPortlets: import/export of local portlets.
+Bug fixes:
+~~~~~~~~~~
+- CPSSkinsExporter: palettes were not being exported.
+- converted the imported image's title to latin9 as it is used in
+  CPSSchemas.BasicWidgets.CPSImageWidget.renderHtmlTag() to avoid generating
+  UnicodeError exceptions.
+- Removed fuzzy translations (fr.po, en.po)
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- added a PortletExporter and PortletImporter.
+- added a 'restore_id' parameter in buildPortlet() for global portlets for
+  which it is important to restore the original identifier.
+
+*******************************************
+** CPSIO V0.3.0 [R1 build 2005/01/28-15:05 by madarche]
+
+Requires:
+~~~~~~~~~
+- CPSWorkflow
+New features:
+~~~~~~~~~~~~~
+- custom skin import/export (supports File, DTMLMethod and PageTemplate objects)
+- Added a CPSSkins import/export module
+  (including support for *global* portlets).
+Bug fixes:
+~~~~~~~~~~
+- fixed cps_vocabularies.rng (msgid was not allowed)
+- CPS portal box CMFFTI attribute was badly restored under Zope2.7.x
+- no longer exporting unsupported hierarchy datamodel field values
+  like Image instances as this causes problems at import time
+- Made CPSIO use the new CPS workflow module: Products.CPSWorkflow.workflow
+- Using CMFCore.permissions instead of CMFCore.CMFCorePermissions
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+-
+
+*******************************************
+** CPSIO V0.2.0 [R1 build 2004/09/14-15:18 by epietrig]
+
+Requires:
+~~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~~
+- There is now a BaseExporter class from which all export plugins should
+  inherit.
+- There is now a BaseImporter class from which all import plugins should
+  inherit.
+- Now CPS3Exporter does exports as Zip file and imports data from Zip file.
+- test if Localizer product is installed. If not, no transtations are
+  installed.
+- It is now possible to use default template instead of having to write a
+  new template for each new plugin.
+- Page after import/export now displays logs.
+Bug fixes:
+~~~~~~~~~~
+- local .cps_workflow_configuration objects are now {im,ex}ported
+- Factory-based Type Information portal type definitions are restored
+  by CPS3Importer
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~~
+- some templates have been renamed to reflect their genericity
+
+*******************************************
+** CPSIO V0.1.1 [R1 build 2004/08/23-05:52 by fermigier]
+
+Requires:
+~~~~~~~~
+-
+New features:
+~~~~~~~~~~~~
+- more information about document export status process
+Bug fixes:
+~~~~~~~~~
+- boolean values can now be expressed as True/False in addition
+  to 1/0 in XML files
+- import/export of documents automatically triggets import/export of
+  hierarchy (which is mandatory)
+
+New internal features:
+~~~~~~~~~~~~~~~~~~~~~
+-
+  
+

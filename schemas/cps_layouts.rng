@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<!--
+(C) Copyright 2004 Nuxeo SARL (http://nuxeo.com)
+Author: Emmanuel Pietriga (ep@nuxeo.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 2 as published
+by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+
+$Id$
+-->
+
+<!-- A Relax-ng schema for CPS layouts exported by CPSIO.CPS3Exporter
+                                       imported by CPSIO.CPS3Importer
+     http://www.nuxeo.com/2004/06/cpslayouts#
+
+
+     Data type sytem : W3C's XSD (be sure to use a RELAX-NG validator that
+                       supports this system)
+                       http://www.w3.org/TR/xmlschema-2/ -->
+
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         xmlns:rng="http://relaxng.org/ns/structure/1.0"
+         xmlns:clt="http://www.nuxeo.com/2004/06/cpslayouts#"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+
+<start combine="choice">
+  <ref name="root"/>
+</start>
+
+<define name="root" combine="choice">
+  <element name="clt:layouts">
+    <zeroOrMore>
+      <ref name="layout"/>
+      <optional>
+        <element name="clt:widgetTypes">
+          <zeroOrMore>
+            <ref name="widgetType"/>
+          </zeroOrMore>
+        </element>
+      </optional>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="layout">
+  <element name="clt:layout">
+    <interleave>
+      <element name="clt:flexible_widgets">
+        <text/>
+        <attribute name="type"/>
+      </element>
+      <element name="clt:widgets">
+        <zeroOrMore>
+          <ref name="widget"/>
+        </zeroOrMore>
+      </element>
+      <element name="clt:rows">
+        <zeroOrMore>
+          <ref name="row"/>
+        </zeroOrMore>
+      </element>
+    </interleave>
+    <attribute name="id"/>
+    <attribute name="ncols"><data type="int"/></attribute>
+    <attribute name="style_prefix"/>
+  </element>
+</define>
+
+<define name="widget">
+  <element name="clt:widget">
+    <attribute name="id"/>
+    <attribute name="widget_type"/>
+    <optional>
+      <attribute name="is_i18n"><data type="boolean"/></attribute>
+    </optional>
+    <optional>
+      <attribute name="is_required"><data type="boolean"/></attribute>
+    </optional>
+    <optional>
+      <attribute name="hidden_empty"><data type="boolean"/></attribute>
+    </optional>
+    <optional>
+      <attribute name="label"/>
+    </optional>
+    <optional>
+      <attribute name="label_edit"/>
+    </optional>
+    <optional>
+      <attribute name="title"/>
+    </optional>
+    <zeroOrMore>
+      <element>
+        <anyName/>
+        <text/>
+        <attribute name="type"/>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="row">
+  <element name="clt:row">
+    <zeroOrMore>
+      <element name="clt:cell">
+        <attribute name="widget_id"/>
+        <optional>
+          <attribute name="ncols"/>
+        </optional>
+      </element>
+    </zeroOrMore>
+  </element>
+</define>
+
+<define name="widgetType">
+  <element name="clt:widgetType">
+    <zeroOrMore>
+      <element name="clt:property">
+        <text/>
+        <attribute name="name"/>
+        <attribute name="type"/>
+      </element>
+    </zeroOrMore>
+    <attribute name="id"/>
+    <attribute name="widget_type"/>
+  </element>
+</define>
+
+</grammar>
