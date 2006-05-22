@@ -21,7 +21,7 @@ import os
 import re
 import locale
 
-from zLOG import LOG, DEBUG, INFO, ERROR, WARNING
+from zLOG import LOG, DEBUG, INFO, ERROR, WARNING, PROBLEM
 from elementtree.ElementTree import ElementTree
 from elementtree.ElementPath import findall as xpath_findall
 from elementtree.ElementPath import find as xpath_find
@@ -2228,9 +2228,42 @@ class DocumentImporter(IOBase):
                                              portal_type, proxy_id,
                                              docid=doc_id)
         #set properties on proxy
-        proxy.setDefaultLanguage(default_language)
         for lang, rev in language_revisions.items():
             proxy.setLanguageRevision(lang, rev)
+            try:
+                doc = proxy.getContent(lang=lang)
+            except KeyError, err:
+                if err.args[0].startswith(doc_id):
+                    # we referred to a missing version
+                    msg = "Docid %s: rev %d (language %s) missing. "
+                    "Deleting language"
+                    msg = msg % (doc_id, rev, lang)
+                    LOG("CPS3Importer.buildProxy", PROBLEM, msg)
+                    self.log(msg)
+                    del language_revisions[lang]
+                    ### XXX such low level is bad, but there's no API for this
+                    # that doesn't fire a lot of useless (for us) events
+                    del proxy._language_revs[lang]
+                    if lang == default_language:
+                        default_lang_invalid = True
+                else:
+                    raise
+
+        if not default_language in language_revisions:
+            # can't do better than arbitrary
+            new_default = language_revisions.keys()[0]
+            msg = "Docid: %s. default lang %s missing. Fallback to %s" %  (
+                doc_id, default_language, new_default)
+            self.log(msg)
+            LOG("CPS3Importer.buildProxy", PROBLEM, msg)
+            default_language = new_default
+
+        proxy.setDefaultLanguage(default_language)
+
+        if not default_language in language_revisions:
+            proxy.setDefaultLanguage(language_revisions.keys()[0])
+
+
         proxy.setFromLanguageRevisions(from_language_revisions)
 
         doc = proxy.getContent()

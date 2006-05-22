@@ -18,8 +18,12 @@
 #
 # $Id$
 
+from Testing import ZopeTestCase
+
 from Products.ExternalMethod.ExternalMethod import ExternalMethod
 from Products.CPSDefault.tests.CPSTestCase import CPSTestCase, MANAGER_ID
+
+ZopeTestCase.installProduct('CPSIO')
 
 class CPSIOTestCase(CPSTestCase):
 

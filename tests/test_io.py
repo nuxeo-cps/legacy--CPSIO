@@ -296,6 +296,32 @@ class TestIO(CPSIOTestCase.CPSIOTestCase):
         # what has been exported is done in test_cps3docimportexport
         doc_importer = cps3docimporter(self.portal, 'documents', 'ut', 0)
 
+    def test_cps3docimporter_buildProxy(self):
+        # test robustness wrt missing revisions
+        repotool = self.portal.portal_repository
+        docid = repotool.getFreeDocid()
+        ptype = 'News Item'
+        repotool.constructContent(ptype, docid+ '__0002')
+        # an overwriting importer
+        imp = cps3docimporter(self.portal, 'documents', 'ut', 1)
+
+        # proxy XML element
+        proxy_el = Element('{%s}proxy' % imp.ns_uri)
+        proxy_el.set('defaultLang', 'fr')
+        proxy_el.set('docId', docid)
+        lr_el = SubElement(proxy_el, "{%s}languageRevisions" % imp.ns_uri)
+        lr_el.set('fr', '1')
+        lr_el.set('en', '2')
+
+        # buildProxy (calls getContent)
+        rpath = 'workspaces/test_proxy'
+        imp.buildProxy(proxy_el, rpath, ptype)
+
+        # assertions
+        proxy = self.portal.workspaces.test_proxy
+        self.assertEquals(proxy.getLanguageRevisions(), {'en': 2})
+        self.assertEquals(proxy.getDefaultLanguage(), 'en')
+
     def test_cps3ptimportexport(self):
         # remember portal types for comparison
         # when we import them back

@@ -6,7 +6,7 @@ New features:
 -
 Bug fixes:
 ~~~~~~~~~~
--
+- CPS3Importer will survive if a language revision is missing
 New internal features:
 ~~~~~~~~~~~~~~~~~~~~~~
 -
